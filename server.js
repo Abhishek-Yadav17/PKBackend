@@ -1,4 +1,5 @@
 require('dotenv').config();
+console.log("EMAIL:", process.env.EMAIL);
 const express = require('express');
 const nodemailer = require('nodemailer');
 const cors = require('cors');
@@ -19,7 +20,7 @@ app.post('/send', async (req, res) => {
     });
 
 
-    
+
     const mailOptions = {
         from: process.env.EMAIL,
         to: process.env.EMAIL,
