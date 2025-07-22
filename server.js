@@ -8,10 +8,12 @@ app.use(cors());
 app.use(express.json());
 
 app.post('/send', async (req, res) => {
-    const { firstName, lastName, email, phone, message } = req.body;
+    const { firstName, lastName, email, phone, subject, message } = req.body;
 
     const transporter = nodemailer.createTransport({
-        service: 'gmail',
+        host: 'mail.pkfitnessandnutritions.com',
+        port: 465,
+        secure: true,
         auth: {
             user: process.env.EMAIL,
             pass: process.env.PASS,
@@ -26,6 +28,7 @@ app.post('/send', async (req, res) => {
       Name: ${firstName} ${lastName}
       Email: ${email}
       Phone: ${phone}
+      Subject: ${subject}
       Message: ${message}
     `,
     };
